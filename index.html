@@ -78,31 +78,26 @@
             }
         ];
 
-        // NOUVELLE SECTION ADD-ONS
         const addons = [
             {
-                id: 1, 
-                title: "Trailer Cinématique", 
-                price: "+15€", 
-                icon: "Video",
-                description: "Un trailer épique de 30 à 60s réalisé avec Replay Mod & Shaders pour présenter votre mod sur les réseaux.",
-                tags: ["4K 60FPS", "Replay Mod", "Montage Inclus"]
+                title: "Trailer Cinématique",
+                price: "+6€ - 30€",
+                description: "Capture vidéo haute qualité avec Replay Mod et montage dynamique pour vos réseaux sociaux.",
+                icon: "Video"
             },
             {
-                id: 2, 
-                title: "Livraison Express", 
-                price: "+20€", 
-                icon: "Zap",
-                description: "Votre commande passe en priorité absolue sur ma liste d'attente. Réduit le délai de livraison de 30%.",
-                tags: ["Priorité", "Rush Mode"]
+                title: "Maintenance & Support",
+                price: "+10€ / mois",
+                description: "Mises à jour prioritaires, corrections de bugs garanties et compatibilité versions futures.",
+                icon: "Wrench"
             }
         ];
 
         const projects = [
             {
-                title: "Gravity Swapper", type: "Prototype (Tier 1)",
-                description: "Un mod tech qui inverse la gravité du joueur avec gestion des paquets et vecteurs.",
-                link: "https://github.com/RonoxDEV/Gravity-Swapper-PoC", tags: ["Physics", "PoC", "Forge"]
+                title: "Project Unbound", type: "Advanced (Tier 3/4)",
+                description: "Un projet massif repoussant les limites du moteur Minecraft. Refonte des systèmes de mouvement et mécaniques complexes via Mixins.",
+                link: "https://github.com/RonoxDEV/Project-Unbound-", tags: ["Mixins", "Engine", "Performance"]
             },
             {
                 title: "HeHearsYou", type: "CustomMod (Tier 4)",
@@ -132,11 +127,10 @@
                 Mail: <><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></>,
                 ChevronRight: <path d="m9 18 6-6-6-6" />,
                 ExternalLink: <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" x2="21" y1="14" y2="3" /></>,
-                Copy: <><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></>,
                 Menu: <><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></>,
                 X: <><path d="M18 6 6 18" /><path d="m6 6 12 12" /></>,
-                Video: <><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></>,
-                Zap: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                Video: <><path d="m22 8-6 4 6 4V8Z" /><rect width="14" height="12" x="2" y="6" rx="2" ry="2" /></>,
+                Wrench: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
             };
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -150,7 +144,6 @@
             const [isMenuOpen, setIsMenuOpen] = useState(false);
             const [toast, setToast] = useState({ show: false, message: "" });
 
-            // Fonction de copie universelle
             const copyToClipboard = (text, type) => {
                 const el = document.createElement('textarea');
                 el.value = text;
@@ -194,7 +187,8 @@
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-8">
                                         <a href="#services" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Services</a>
-                                        <a href="#calendar" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Disponibilités</a>
+                                        <a href="#addons" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Options</a>
+                                        <a href="#calendar" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Planning</a>
                                         <a href="#portfolio" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">Portfolio</a>
                                         <button onClick={() => copyToClipboard(CONTACT.discord, "Pseudo Discord")} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold transition-all text-sm flex items-center gap-2">
                                             <Icon name="MessageSquare" size={16} /> Discord
@@ -208,15 +202,13 @@
                                 </div>
                             </div>
                         </div>
-
-                        {/* MENU MOBILE CORRIGÉ */}
                         {isMenuOpen && (
                             <div className="md:hidden bg-[#0a0a0c] border-b border-white/10">
                                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                     <a href="#services" className="block px-3 py-2 text-base font-medium hover:bg-slate-800 rounded-md text-slate-200" onClick={() => setIsMenuOpen(false)}>Services</a>
+                                    <a href="#addons" className="block px-3 py-2 text-base font-medium hover:bg-slate-800 rounded-md text-slate-200" onClick={() => setIsMenuOpen(false)}>Options</a>
                                     <a href="#calendar" className="block px-3 py-2 text-base font-medium hover:bg-slate-800 rounded-md text-slate-200" onClick={() => setIsMenuOpen(false)}>Disponibilités</a>
-                                    <a href="#portfolio" className="block px-3 py-2 text-base font-medium hover:bg-slate-800 rounded-md text-slate-200" onClick={() => setIsMenuOpen(false)}>Portfolio</a>
-                                    <button onClick={() => { copyToClipboard(CONTACT.discord, "Pseudo Discord"); setIsMenuOpen(false); }} className="w-full text-left px-3 py-2 text-base font-medium hover:bg-slate-800 rounded-md flex items-center gap-2 text-indigo-400">
+                                    <button onClick={() => { copyToClipboard(CONTACT.discord, "Pseudo Discord"); setIsMenuOpen(false); }} className="w-full text-left px-3 py-2 text-base font-medium text-indigo-400 flex items-center gap-2">
                                         <Icon name="MessageSquare" size={16} /> Discord
                                     </button>
                                 </div>
@@ -239,7 +231,7 @@
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Mods Minecraft</span>
                             </h1>
                             <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
-                                Développeur Java 15 ans spécialisé Forge & Fabric. <br/>
+                                Développeur Java de 15 ans spécialisé Forge & Fabric. <br/>
                                 Performance, visuels et systèmes complexes.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -253,11 +245,11 @@
 
                     {/* SERVICES */}
                     <section id="services" className="py-24 bg-slate-900/40 border-y border-white/5">
-                        <div className="max-w-6xl mx-auto px-4">
-                            <h2 className="text-4xl font-black text-white mb-16 text-center tracking-tight">Mes Services</h2>
+                        <div className="max-w-6xl mx-auto px-4 text-center">
+                            <h2 className="text-4xl font-black text-white mb-16 tracking-tight">Mes Services Principaux</h2>
                             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                                 {services.map((s) => (
-                                    <div key={s.id} className="bg-[#0f0f13] border border-white/5 p-8 rounded-3xl hover:border-indigo-500/30 transition-all group flex flex-col h-full">
+                                    <div key={s.id} className="bg-[#0f0f13] border border-white/5 p-8 rounded-3xl hover:border-indigo-500/30 transition-all group flex flex-col h-full text-left">
                                         <h3 className="text-2xl font-bold text-white mb-2">{s.tier}</h3>
                                         <div className="text-3xl font-black text-indigo-400 mb-4">{s.price}</div>
                                         <p className="text-sm text-slate-400 mb-8 flex-grow leading-relaxed">{s.description}</p>
@@ -271,30 +263,24 @@
                         </div>
                     </section>
 
-                    {/* EXTRAS / ADD-ONS */}
-                    <section className="py-12 px-4 max-w-6xl mx-auto">
-                        <div className="bg-gradient-to-r from-indigo-900/20 to-purple-900/20 rounded-3xl p-8 border border-indigo-500/20">
-                            <h3 className="text-2xl font-black text-white mb-8 flex items-center gap-3">
-                                <span className="bg-indigo-500 text-white px-3 py-1 rounded-lg text-xs uppercase tracking-widest">Bonus</span>
-                                Options Disponibles
-                            </h3>
-                            <div className="grid md:grid-cols-2 gap-6">
-                                {addons.map((addon) => (
-                                    <div key={addon.id} className="bg-[#0f0f13] p-6 rounded-2xl border border-white/5 flex flex-col sm:flex-row gap-6 items-start hover:bg-slate-800/50 transition-colors">
-                                        <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0 text-indigo-400">
-                                            <Icon name={addon.icon} size={24} />
+                    {/* ADDONS SECTION */}
+                    <section id="addons" className="py-24 px-4 bg-[#0a0a0c]">
+                        <div className="max-w-4xl mx-auto">
+                            <h2 className="text-4xl font-black text-white mb-4 text-center tracking-tight">Services Additionnels</h2>
+                            <p className="text-slate-400 text-center mb-16 font-medium">Boostez votre projet avec ces options exclusives.</p>
+                            
+                            <div className="grid md:grid-cols-2 gap-8">
+                                {addons.map((addon, idx) => (
+                                    <div key={idx} className="bg-gradient-to-br from-indigo-500/5 to-purple-500/5 border border-white/5 p-8 rounded-3xl flex items-start gap-6 group hover:border-indigo-500/30 transition-all">
+                                        <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+                                            <Icon name={addon.icon} size={28} />
                                         </div>
                                         <div>
-                                            <div className="flex justify-between items-start mb-2">
-                                                <h4 className="text-lg font-bold text-white">{addon.title}</h4>
-                                                <span className="bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full text-sm font-black border border-indigo-500/20">{addon.price}</span>
+                                            <div className="flex justify-between items-center mb-2">
+                                                <h3 className="text-xl font-bold text-white">{addon.title}</h3>
+                                                <span className="text-indigo-400 font-black text-sm">{addon.price}</span>
                                             </div>
-                                            <p className="text-sm text-slate-400 mb-4">{addon.description}</p>
-                                            <div className="flex flex-wrap gap-2">
-                                                {addon.tags.map(tag => (
-                                                    <span key={tag} className="text-[10px] bg-slate-900 text-slate-500 px-2 py-1 rounded font-bold uppercase">{tag}</span>
-                                                ))}
-                                            </div>
+                                            <p className="text-slate-400 text-sm font-medium leading-relaxed">{addon.description}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -307,7 +293,7 @@
                         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                             <div>
                                 <h2 className="text-4xl font-black text-white mb-4 flex items-center gap-3"><Icon name="Calendar" className="text-indigo-400" size={32} /> Planning</h2>
-                                <p className="text-slate-400 font-medium">Réservez votre créneau à l'avance.</p>
+                                <p className="text-slate-400 font-medium">Vérifiez mes créneaux disponibles pour vos commandes.</p>
                             </div>
                             <div className="flex gap-4">
                                 <div className="flex items-center gap-2 text-xs font-bold text-green-400 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20"><div className="w-2 h-2 rounded-full bg-green-500"></div> Libre</div>
@@ -322,7 +308,7 @@
                         </div>
                     </section>
 
-                    {/* PORTFOLIO ACCROCHE */}
+                    {/* PORTFOLIO ACCROCHE (AVEC PROJECT UNBOUND) */}
                     <section id="portfolio" className="py-24 bg-slate-900/20 border-t border-white/5">
                         <div className="max-w-6xl mx-auto px-4">
                              <h2 className="text-3xl font-black text-white mb-12 text-center">Dernières Créations</h2>
@@ -332,13 +318,11 @@
                                         <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity"><Icon name="Code" size={120} /></div>
                                         <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
                                         <p className="text-sm text-slate-400 mb-6 font-medium line-clamp-2 flex-grow">{p.description}</p>
-                                        
                                         <div className="flex flex-wrap gap-2 mb-6">
                                             {p.tags.map(tag => (
                                                 <span key={tag} className="text-[10px] uppercase font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded-md border border-white/5 tracking-wider">{tag}</span>
                                             ))}
                                         </div>
-
                                         <a href={p.link} target="_blank" className="inline-flex items-center gap-2 text-indigo-400 font-black text-xs uppercase tracking-widest hover:text-indigo-300 transition-colors">Explorer <Icon name="ExternalLink" size={14}/></a>
                                     </div>
                                 ))}
@@ -353,20 +337,11 @@
                             <p className="text-slate-400 mb-12 text-lg font-medium">Cliquez pour copier mes coordonnées et m'écrire.</p>
                             
                             <div className="flex flex-col sm:flex-row justify-center gap-6">
-                                 {/* BOUTON DISCORD */}
-                                 <button 
-                                    onClick={() => copyToClipboard(CONTACT.discord, "Pseudo Discord")}
-                                    className="group bg-[#5865F2] text-white px-10 py-5 rounded-2xl font-black flex flex-col items-center gap-1 hover:scale-105 transition-all shadow-xl shadow-indigo-500/10 active:scale-95"
-                                 >
+                                 <button onClick={() => copyToClipboard(CONTACT.discord, "Pseudo Discord")} className="group bg-[#5865F2] text-white px-10 py-5 rounded-2xl font-black flex flex-col items-center gap-1 hover:scale-105 transition-all shadow-xl shadow-indigo-500/10 active:scale-95">
                                     <div className="flex items-center gap-3 text-xl"><Icon name="MessageSquare" size={24}/> Discord</div>
                                     <div className="text-[10px] opacity-70 uppercase tracking-widest">{CONTACT.discord}</div>
                                  </button>
-
-                                 {/* BOUTON EMAIL */}
-                                 <button 
-                                    onClick={() => copyToClipboard(CONTACT.email, "Email")}
-                                    className="group bg-slate-800 text-white px-10 py-5 rounded-2xl font-black flex flex-col items-center gap-1 hover:scale-105 transition-all shadow-xl border border-white/5 active:scale-95"
-                                 >
+                                 <button onClick={() => copyToClipboard(CONTACT.email, "Email")} className="group bg-slate-800 text-white px-10 py-5 rounded-2xl font-black flex flex-col items-center gap-1 hover:scale-105 transition-all shadow-xl border border-white/5 active:scale-95">
                                     <div className="flex items-center gap-3 text-xl"><Icon name="Mail" size={24}/> Email</div>
                                     <div className="text-[10px] opacity-70 uppercase tracking-widest">{CONTACT.email}</div>
                                  </button>
