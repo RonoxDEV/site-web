@@ -78,6 +78,26 @@
             }
         ];
 
+        // NOUVELLE SECTION ADD-ONS
+        const addons = [
+            {
+                id: 1, 
+                title: "Trailer Cinématique", 
+                price: "+15€", 
+                icon: "Video",
+                description: "Un trailer épique de 30 à 60s réalisé avec Replay Mod & Shaders pour présenter votre mod sur les réseaux.",
+                tags: ["4K 60FPS", "Replay Mod", "Montage Inclus"]
+            },
+            {
+                id: 2, 
+                title: "Livraison Express", 
+                price: "+20€", 
+                icon: "Zap",
+                description: "Votre commande passe en priorité absolue sur ma liste d'attente. Réduit le délai de livraison de 30%.",
+                tags: ["Priorité", "Rush Mode"]
+            }
+        ];
+
         const projects = [
             {
                 title: "Gravity Swapper", type: "Prototype (Tier 1)",
@@ -97,7 +117,8 @@
         ];
 
         const busyDates = [
-           
+            { start: 10, end: 15, type: "FatMod Dev" },
+            { start: 25, end: 28, type: "TinyMod Dev" }
         ];
 
         // --- COMPOSANT ICONES ---
@@ -113,7 +134,9 @@
                 ExternalLink: <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" x2="21" y1="14" y2="3" /></>,
                 Copy: <><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></>,
                 Menu: <><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></>,
-                X: <><path d="M18 6 6 18" /><path d="m6 6 12 12" /></>
+                X: <><path d="M18 6 6 18" /><path d="m6 6 12 12" /></>,
+                Video: <><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></>,
+                Zap: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             };
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -248,6 +271,37 @@
                         </div>
                     </section>
 
+                    {/* EXTRAS / ADD-ONS */}
+                    <section className="py-12 px-4 max-w-6xl mx-auto">
+                        <div className="bg-gradient-to-r from-indigo-900/20 to-purple-900/20 rounded-3xl p-8 border border-indigo-500/20">
+                            <h3 className="text-2xl font-black text-white mb-8 flex items-center gap-3">
+                                <span className="bg-indigo-500 text-white px-3 py-1 rounded-lg text-xs uppercase tracking-widest">Bonus</span>
+                                Options Disponibles
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {addons.map((addon) => (
+                                    <div key={addon.id} className="bg-[#0f0f13] p-6 rounded-2xl border border-white/5 flex flex-col sm:flex-row gap-6 items-start hover:bg-slate-800/50 transition-colors">
+                                        <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0 text-indigo-400">
+                                            <Icon name={addon.icon} size={24} />
+                                        </div>
+                                        <div>
+                                            <div className="flex justify-between items-start mb-2">
+                                                <h4 className="text-lg font-bold text-white">{addon.title}</h4>
+                                                <span className="bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full text-sm font-black border border-indigo-500/20">{addon.price}</span>
+                                            </div>
+                                            <p className="text-sm text-slate-400 mb-4">{addon.description}</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {addon.tags.map(tag => (
+                                                    <span key={tag} className="text-[10px] bg-slate-900 text-slate-500 px-2 py-1 rounded font-bold uppercase">{tag}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
                     {/* PLANNING */}
                     <section id="calendar" className="py-24 px-4 max-w-5xl mx-auto">
                         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -268,7 +322,7 @@
                         </div>
                     </section>
 
-                    {/* PORTFOLIO ACCROCHE (AVEC TAGS CORRIGÉS) */}
+                    {/* PORTFOLIO ACCROCHE */}
                     <section id="portfolio" className="py-24 bg-slate-900/20 border-t border-white/5">
                         <div className="max-w-6xl mx-auto px-4">
                              <h2 className="text-3xl font-black text-white mb-12 text-center">Dernières Créations</h2>
@@ -279,7 +333,6 @@
                                         <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
                                         <p className="text-sm text-slate-400 mb-6 font-medium line-clamp-2 flex-grow">{p.description}</p>
                                         
-                                        {/* TAGS AJOUTÉS ICI */}
                                         <div className="flex flex-wrap gap-2 mb-6">
                                             {p.tags.map(tag => (
                                                 <span key={tag} className="text-[10px] uppercase font-bold bg-slate-800 text-slate-300 px-2 py-1 rounded-md border border-white/5 tracking-wider">{tag}</span>
@@ -336,5 +389,4 @@
         root.render(<App />);
     </script>
 </body>
-
 </html>
